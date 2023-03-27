@@ -1,0 +1,486 @@
+/*이건 폰트*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
+
+/* reset */
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input {
+    outline: none;
+    border: none;
+}
+
+
+/* common style */
+.wrap {
+    font-size: 15px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.hide {
+    display: none !important;
+}
+
+
+/*   header style  */
+header {
+    position: fixed;   /*스크롤있을 때 화면에다 고정 시킴*/
+    top: 0; /*최상단에 항상 고정*/
+    width: 100%;   /*따로 줘야됨. 항상 꽉채울꺼임.*/
+    z-index:9999;  /*위에 배치가 될 수 있도록.*/
+}
+
+
+
+
+header .inner-header {
+    /* background-color: orange; */
+    width: 92%;
+    margin: 0 auto;  /*공식.  가운데정렬*/
+
+    display:flex;
+    justify-content: space-between  ;   /*주축 정렬*/
+    align-items: center;  /*수직축, 즉 교차축 정렬  */
+
+    font-weight: bold;
+    color: #fff;
+}
+
+
+header .inner-header .logo{
+    /* background: tomato; */
+    /*단축속성 : 그로우는 무조건, 나머진 안주면 기본 값임.  즉, 이건 flex-grow:1 이다 와 같음*/
+    flex: 1;
+}
+
+
+header .inner-header .logo a {
+    display:block;
+    width: 100%;
+}
+
+
+header .inner-header .logo a img {
+    height: 60px;
+}
+
+
+header .inner-header .intro-text {  /*웰컴 글씨*/
+    /* background: greenyellow; */
+    /*단축속성 : 그로우는 무조건, 나머진 안주면 기본 값임.  즉, 이건 flex-grow:4 이다 와 같음*/
+    /*즉, 4:1:1*/
+    flex: 4;
+    margin-left: 40px;      /*flex줘도 마진 줄수 있다..포지션도 가능하다..플롯도 가능하다..*/
+    text-transform: uppercase;   /*대문자로 변경*/
+}
+
+
+header .inner-header .menu-open {
+    /* background: skyblue; */
+    flex: 1;   /*즉, 1:4:1 로 구축하라는 것이다. */
+    font-size: 16px;
+
+
+    
+    /*글자 가운데 정렬 공식  >  근데 가운데는 별로 같으니..justify-center를 center말고 end로 주자*/
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+
+header .inner-header .menu-open .lnr-menu {  /*햄버거 버튼*/
+    font-size: 33px;
+    margin-left: 15px;
+}
+
+
+
+header .gnb {
+    background: #000;
+    color: #666; /*회색 > 호버로 밝게 할 것임*/
+    font-size: 40px;
+    padding: 70px 100px;   /*상하70 좌우100*/
+    box-sizing: border-box;  /*박스 자체 크기가 커지는 것을 방지*/
+
+    position: fixed;
+    right: -100%;  /*일단 화면바깥으로 밀어버림. 근데이건 호버+액티브 한 다음 적용해줬다.*/
+    top: 0;  /*상단에 붙어있어야하니*/
+    height: 100vh;  /*디바이스의 크기에 따라 세로를 전부다 먹게끔.*/
+
+    display: flex;  /*세로로 되어있다. 가로로 만들고 싶다! > X는 반대편으로 가길 원하니까  > 로우리버스*/
+    flex-direction: row-reverse;
+
+}
+
+
+
+header .gnb .close {
+    display: block;
+    color: #fff;
+}
+
+
+header .gnb ul {
+    margin-right: 200px;
+}
+
+
+header .gnb ul li {
+    font-weight: 700;
+    line-height: 1.7;   /*글자 간 간격*/
+}
+
+
+
+header .gnb ul li:hover,     /*호버를 하든 클릭을 하든 흰색으로 처리되게끔*/
+header .gnb ul li:active {
+    color: #fff;
+}
+
+
+header .gnb.on {  /* js 링크연결부분에 디퍼쓰고, on 확인되었으면 이걸 씀*/
+    right: 0;
+    transition: all 0.4s;  /* 올 안써도됨 기본이니까. 즉, 메뉴누르면 X누르면서 껏다가킬수있음 */
+}
+
+
+
+
+
+/*      section.visual style     */
+section.visual .slide li {
+    width: 100%;
+    height: 100vh;
+    /* background: orange; */
+    overflow: hidden;
+    position: relative;
+}
+
+
+
+/*      이미지 꽉 채울 것임       */
+section.visual .slide li img {
+    width: 100%;
+    /*넘치는 부분은 굳이 보여줄 필요 없으니 부모에 오버플로우 ㄱㄱ*/
+    /*근데 이러면 맨아래 부분이 없어진다. 앱솔루트 줘서 가운데에 강제로 박자.*/
+    position: absolute;  /*앱솔줄라면 부모에 포지션렐러티브*/
+    top: -50%;  /*이미지 살짝 올리기*/
+
+}
+
+
+/*이제 글씨 보이게*/
+section.visual .slide li .txt {
+    color: #fff;
+    font-size: 18px;
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);    /*y축 가운데 정렬 > 수평*/
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.8)    /*x y 크기 투명도 순*/
+}
+
+
+section.visual .slide li h3 {
+    margin: 30px 0;  /*상하30 좌우0*/
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+
+
+section.visual .slide li .scroll {
+    /* background: orange; */
+    position: absolute;   /*li를 기준으로 움직이겠지*/
+    left: 50px;
+    bottom: 10%;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ccc;
+    transform: rotate(-90deg);  /* -90도 돌아가라 */
+}
+
+
+/*   section.contents style   */
+section.contents {
+    background: #1b1b1b;
+    color: #fff;
+    padding: 120px 0; /*상하120 좌우0*/
+}
+
+
+section.contents .main-text {
+    /* background: tomato; */
+    width: 80%;
+    margin: 0 auto;
+    font-size: 25px;
+
+    /*가로배치*/
+    display: flex;
+    position: relative; /*아래서 앱솔썼으니 부모인 얘한테 렐러티브줬다~*/
+}
+
+
+section.contents .main-text::before {  /*비포로 원을 표현하고 에프터로 따옴표를 만들것*/
+    content: '';
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: #ffec03;
+    position: absolute; /*바로 위에있는 얘한테 포지션 렐러티브줘야지~*/
+    left: 70px;
+    top: 100px;
+}
+
+
+section.contents .main-text::after {
+    content: '”';  /*특수문자넣었음*/
+    font-size: 300px;
+    position: absolute;  /*이미 main-text라는 부모에 포지션렐러티브 줬으니 또 안줘도됨~*/
+    left: 0;
+    top: 100px;
+}
+
+
+
+
+section.contents .main-text h3 {
+    flex: 1;    /*1:1:1*/
+    font-weight: bold;
+}
+
+
+section.contents .main-text p {
+    flex: 2;   /*2:1:1*/
+    font-size: 23px;
+    line-height: 1.4;  /*문구가 기니까 라인하이트. > 글자 위아래 간격*/
+}
+
+
+
+section.contents .main-text p span {
+    display: block;
+    font-size: 20px;
+    color: #999;
+    margin-top: 30px;
+}
+
+
+
+/*  > .project  */
+section.contents .project .top {
+    /* background: tomato; */
+    width: 80%;
+    margin: 200px auto 60px;  /*상200 좌우오토 아래 60*/
+
+    display: flex;
+    justify-content: space-between;  /*주축정렬 > 즉, 양쪽으로 찢고 중간에 균일한 공백을 줌*/
+
+}
+
+
+section.contents .project .top h3 {
+    /* background: red; */
+    font-size: 35px;
+    font-weight: bold;
+}
+
+
+section.contents .project .top a {
+    font-size: 18px;
+}
+
+
+
+section.contents .project ul {
+    display: flex; /*가로배치*/
+    justify-content: space-evenly; /*주축정렬 > 비트윈은 양쪽여백없는거고 중간에 균일한 여백주는거고
+                                               이블린은 맨 끝도 여백가지는것임 근데 이미지가 크니까 겹쳐보임
+                                   */
+}
+
+
+section.contents .project ul li {
+    /*이미지가 너무 크니 줄여주자*/
+    width: 24%; /*마우스로 비율좀 줄이면 줄여짐 > 24*4 = 96이니 거의 딱맞게 될것임*/
+    border: 4px solid #fff;
+    box-sizing: border-box;  /*크기가 더벌이지지마라*/
+    height: 400px;
+    overflow: hidden; /*넘치는 부분 안보이게*/
+    position: relative;
+}
+
+
+
+/* 가상요소 이용해서 커텐효과주자*/
+section.contents .project ul li a::before {
+    content: '';
+    width: 0; /*일단 0*/
+    height: 100%;
+    background: rgba(27, 27, 27, 0.9);
+    transition: 0.6s;
+    position:absolute; /*독립적으로 움직이게끔 값은따로안줌.*/
+}
+
+
+section.contents .project ul li a:hover::before{  /*호버가 발생한다면 100% 채워지게끔.*/
+    width: 100%;
+}
+
+
+section.contents .project ul li a img {
+    width: 100%;
+}
+
+
+section.contents .project ul li a .name {
+    font-size: 22px;
+    text-align: right;
+
+    width: 250px;
+    padding: 15px; /*상하좌우15*/
+    box-sizing: border-box; /*패딩줘도 width가 안커지게끔*/
+    background: #1b1b1b;
+
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+
+    opacity: 0;  /*안보임*/
+}
+
+
+
+
+/*아래 키프레임스로 애니메이션 적용했으니 이거 작성해야지*/
+section.contents .project ul li a:hover .name {
+    animation: show-name 1s forwards;  /*초, 방향, 반복횟수는따로지정X 즉, 기본값*/
+}
+
+/*서서히 보이게끔*/
+@keyframes show-name {  /*0%와 100%와 같은 의미임*/
+    from {
+        opacity: 0;  
+        bottom: -30px; /*떠오르는 식으로 처리하려고.*/
+    }
+    to {  /*마지막에는 opacity가 1로되면서 눈에 보이게.*/
+        opacity: 1;
+        bottom: 10px;
+    }
+}
+
+
+section.contents .partner {
+    width: 80%;
+    margin: 170px auto 100px;  /*상170 좌우오토 하100.  오토는 있었야함*/
+}
+
+
+section.contents .partner h3{
+    font-size: 17px;
+    margin-bottom: 80px;
+}
+
+section.contents .partner ul {
+    display: flex; /*어떻게든 가로로 배치가 된다. 근데 줄개행이 필요하다*/
+    flex-wrap: wrap;  /*그럼 줄개행이 됨. 근데 줄개행이 마음에안들어. 4개씩 배치하고싶은데*/
+}
+
+
+section.contents .partner ul li {
+    width: 25%; /*25%씩 줘야 4개씩 배치됨*/
+
+    /*공식이지? 수평과 수직 가운데정렬*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 80px;
+}
+
+
+section.contents .partner ul li img {
+    opacity: 0.3;  /*배경이 어두우니 어두울것이다.*/
+    transition: 0.3;
+}
+
+
+section.contents .partner ul li img:hover {  /* 이미지에 호버가 되게끔 */
+    opacity: 1; /*호버하면 잘 나타나게끔*/
+}
+
+
+
+/* .contact style */
+section.contents .contact {
+    width: 90%;
+    background: url(../img/contact.jpg) no-repeat center / cover fixed; /*스크롤내려도 화면에 박혀있는 것 처럼 fixed.*/
+    padding: 220px 0;
+}
+
+
+section.contents .contact .inner {
+    width: 70%;  /*부모의 70%*/
+    margin: 0 auto;  /* 가운데 */
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+section.contents .contact .inner .tel {
+    font-size: 55px;
+    font-weight: bold;
+    margin: 50px 0; /*상하50 좌우0*/
+}
+
+
+
+/*    footer style    */
+footer {
+    background: #1b1b1b;
+    color: #999;
+    padding: 0 80px 80px;  /*위0 좌우80 아래80*/
+}
+
+
+/*ul안에 li들이 가로로 배치 되어 있으니 플렉스주자~*/
+footer ul {
+    display: flex;
+    justify-content: space-around;  
+    align-items: center;   /*주축과 교차축 정렬을 동시에 진행*/
+
+}
+
+
+
+/*다 span인데, 우린 줄개행이 필요하다. 스팬은 A랑 T랑 E만있다. 태그에 포함되어 있지 않다.*/
+/*첫번쨰는 괜찮으니 두번쨰 li먼저 정리하자*/
+footer ul li:nth-child(2) {
+    color : #eee;
+    font-size: 16px;
+    line-height: 2;
+}
+
+
+
+footer ul li:nth-child(2) span{
+    color: #999; /*span태그애들은 이 색깔로 해서 일단 잘보이게끔*/
+    font-weight: bold;
+    margin-right: 10px;  /*거리 살짝 벌리기  >   A , T , E 오른쪽에 공백 살짝 생길거임 */
+}
+
+
+
+
+/*마지막 화살표는 a태그인데, 오른쪽 맨끝으로 옮기고싶은데..어떻게할까? 포지션 주면 된다. */
+footer .go-top {
+    color: #fff;
+    font-size: 50px;
+    position: fixed;  /*화면이 기준이됨*/
+    right: 50px;
+    bottom: 60px;
+}
